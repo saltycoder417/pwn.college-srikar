@@ -1,2 +1,2 @@
 # pwn.college-srikar
-Repository mainly made for cryptonite JPT-1
+Repository mainly made for cryptonite JPT-1, by srikar
