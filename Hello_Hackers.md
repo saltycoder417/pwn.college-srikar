@@ -52,7 +52,7 @@ The reference used was the problem statement itself in pwn.college.
 
 **Flag:** `pwn.college{QLJ_8ihsfUwhGVJlEQWBRnP2WQN.0lNzEzNxwiN3kjNzEzW}`
 ## My solve: 
-I firts conneceted ubuntu terminal with pwn.college. Then i started searching the command history using up and down arrows. After clicking the up arrow once, the flag was revealed.
+I first conneceted ubuntu terminal with pwn.college. Then i started searching the command history using up and down arrows. After clicking the up arrow once, the flag was revealed.
 
 
 ```
