@@ -218,6 +218,7 @@ video link: https://www.youtube.com/watch?v=b67Jq6IZ3U8&list=PL-ymxv0nOtqqRAz1x9
 ### In this challenge, it was given that '/challenge/run' command will copy the flag to a file which we have to specify in the argument with 3 conditions. Your argument must be an absolute path, The path must be inside your home directory, and Before expansion, your argument must be three characters or less.
 
 **Flag:** `pwn.college{4rV9fJ70M9r38lzYNA2NGRXKBMG.QXzMDO0wiN3kjNzEzW}`
+
 I first wrote the command they gave for copying a file and i wrote the argument as some directory 'i' inside the home directory(~). It then read the file to me which gave the flag. 
 
 
@@ -230,9 +231,9 @@ pwn.college{4rV9fJ70M9r38lzYNA2NGRXKBMG.QXzMDO0wiN3kjNzEzW}
 
 ## What I learned
 
-The main thing i learnt here is about the home directory, which is where most of the user's personal files are stored. The shell also starts the cwd with the home directory. The symbol '~' which comes in many 
+The main thing i learnt here is about the home directory, which is where most of the user's personal files are stored. The shell also starts the cwd with the home directory. The symbol (~) which comes in many 
 prompts is nothing but the shortform for the user directory (in the case of pwn.college it is /home/hacker). This shortform is provided because most of the time will generally be spent in the home directory.
-'~' is an absolute path and only the leading '~' is expanded. This means, for example, that '~/~' will be expanded to '/home/hacker/~' rather than '/home/hacker/home/hacker'.
+(~) is an absolute path and only the leading is expanded. This means, for example, that the (~/~) will be expanded to '/home/hacker/~' rather than '/home/hacker/home/hacker'.
 ## References
 
 The references used were the problem statement itself in pwn.college and also the video provided above the challenges. 
