@@ -429,27 +429,23 @@ The references used were the problem statements in pwn.college, where they expla
 
 # 14. Linking files: 
 
-### Put challenge description here
+### In this challenge, it is given that /flag file has the flag. and '/challenge/catflag' command reads out '/home/hacker/not-the-flag', and we have to use symlink and fool it to give the flag.
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{soj-t7U9bX7jeSrtG2BKaGG7GI0.QX5ETN1wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+It is given that /challenge/catflag reads /home/hacker/not-the-flag, and /flag file has the flag. So we have to link /flag file with /home/hacker/not-the-flag using ln command with -s argument for symbolic/soft link. After that we have to run the /challenge/catflag command to get the flag, as it will read /home/hacker/not-the-flag, which is a symbolic link to /flag file.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@commands~linking-files:~$ ln -s /flag /challenge/catflag
+ln: failed to create symbolic link '/challenge/catflag': File exists
+hacker@commands~linking-files:~$ ln -s /flag /home/hacker/not-the-flag
+hacker@commands~linking-files:~$ /challenge/catflag
+About to read out the /home/hacker/not-the-flag file!
+pwn.college{soj-t7U9bX7jeSrtG2BKaGG7GI0.QX5ETN1wiN3kjNzEzW}
 ```
-
 ## What I learned
 
-explain what you learned
+I learned about links and about the different types of links: soft link and hard link. Soft links are mostly used. For soft links, we use ln command with -s argument, and for hard links we use ln command without any argument. A symbolic/soft link basically is a file which shows the path to another original file which you want to link to. soft link usage: ln -s ORIGINAL_FILE LINK_FILE. A hard link is an alternate address that indexes that data.  A soft/symbolic link, instead, contains the original file name. When you access the symbolic link, Linux will realize that it is a symbolic link, read the original file name, and then automatically access that file. 
 
 ## References
 
