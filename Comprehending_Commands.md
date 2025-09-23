@@ -192,11 +192,11 @@ explain what you learned
 
 Add an references or videos you used while solving the challenge.
 
-# 8. 
+# 8. removing files: 
 
 ### Put challenge description here
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{k-c4fkdGNuVzeIcaqtFRSD5oRMw.QX2kDM1wiN3kjNzEzW}`
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
@@ -205,11 +205,14 @@ to put code snippets, put three backticks and for images and all other stuff you
 don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@commands~removing-files:~$ ls
+Desktop  delete_me  i
+hacker@commands~removing-files:~$ rm delete_me
+hacker@commands~removing-files:~$ ls
+Desktop  i
+hacker@commands~removing-files:~$ /challenge/check
+Excellent removal. Here is your reward:
+pwn.college{k-c4fkdGNuVzeIcaqtFRSD5oRMw.QX2kDM1wiN3kjNzEzW}
 ```
 
 ## What I learned
@@ -220,11 +223,11 @@ explain what you learned
 
 Add an references or videos you used while solving the challenge.
 
-# 9. 
+# 9. moving files: 
 
 ### Put challenge description here
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{gs8OrnZdnK0zncz_9phxU_bQrVg.0VOxEzNxwiN3kjNzEzW}`
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
@@ -233,11 +236,11 @@ to put code snippets, put three backticks and for images and all other stuff you
 don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@commands~moving-files:~$ mv /flag /tmp/hack-the-planet
+Correct! Performing 'mv /flag /tmp/hack-the-planet'.
+hacker@commands~moving-files:~$ /challenge/check
+Congrats! You successfully moved the flag to /tmp/hack-the-planet! Here it is:
+pwn.college{gs8OrnZdnK0zncz_9phxU_bQrVg.0VOxEzNxwiN3kjNzEzW}
 ```
 
 ## What I learned
