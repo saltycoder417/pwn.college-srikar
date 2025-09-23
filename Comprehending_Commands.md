@@ -330,15 +330,12 @@ The references used were the problem statements in pwn.college. I also used the 
 
 # 12. making directories: 
 
-### Put challenge description here
+### In this challenge, they asked to create a directory named pwn inside tmp directory and make a file named college inside it. Then we have to run /challenge/run to get the flag. 
 
 **Flag:** `pwn.college{MMBcU3wOEVfBOvLzoM1UyQ2a3YM.QXxMDO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+First i used cd command to change the cwd to tmp. Then i used mkdir to create a new directory with pwn as argument. Then i changed the cwd again to pwn then used touch command to create a new file named college.
+I then ran the command to get the flag. 
 
 ```
 hacker@commands~making-directories:~$ cd /tmp
@@ -358,7 +355,7 @@ pwn.college{MMBcU3wOEVfBOvLzoM1UyQ2a3YM.QXxMDO0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned about the mkdir command. This command is used to create new directories. You have to keep the name of the directory and it's location in the arguments. If there is no argument for location, then the directory will be created in the cwd.
 
 ## References
 
@@ -366,15 +363,11 @@ The references used were the problem statements in pwn.college, where they expla
 
 # 13. finding files: 
 
-### Put challenge description here
+### In this challenge, the flag is hidden in some random directory on the filesystem. There are also other files that have the name flag, but only one of them has the actual flag we need. We have to find the flag. 
 
 **Flag:** `pwn.college{8QgHQnusu_mhRnEBEBymbs4Ackm.QXyMDO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I used the find command along with flag as argument and location argument as root directory, then i got all the files and their locations with the name 'flag'. I then took some random file and read it using cat command and you will get the flag in atleast one of them (i luckily got it in the second try). I ignored the ones which told permission denied. I first didnt keep the location argument, which we have to.
 
 ```
 hacker@commands~finding-files:~$ find -name flag
@@ -428,13 +421,13 @@ hacker@commands~finding-files:~$ cat /usr/share/autoconf/Autom4te/flag
 
 ## What I learned
 
-explain what you learned
+I learned about the find command, which we can use to find a file in a directory. It takes the criteria like location and name in the argument. These arguments are optional. If you don't specify a search criteria, find matches every file. If you don't specify a search location, find uses the cwd. 
 
 ## References
 
 The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
-# 14. 
+# 14. Linking files: 
 
 ### Put challenge description here
 
@@ -460,5 +453,5 @@ explain what you learned
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, and the video provided in pwn.college. Video link: https://www.youtube.com/watch?v=m55AtwjBXpE&list=PL-ymxv0nOtqqRAz1x90vxNbhmSkeYxHVC&t=1s.
 
