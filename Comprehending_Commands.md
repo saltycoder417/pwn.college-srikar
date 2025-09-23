@@ -1,14 +1,10 @@
 # 1. Cat: not the pet but the command: 
 
-### Put challenge description here
+### In this challenge, they introduced us to the cat command. They copied the flag file to home directory and we had to read it using cat. 
 
 **Flag:** `pwn.college{03xvramkBrv0_6MW_3P2dD4aGTy.QXxcTN0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+They told flag file is in home directory, so i used the cat command and the flag was given as output in the terminal. 
 
 ```
 hacker@commands~cat-not-the-pet-but-the-command:~$ cat flag
@@ -17,23 +13,19 @@ pwn.college{03xvramkBrv0_6MW_3P2dD4aGTy.QXxcTN0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learnt about the cat command, which is used to read out the files which are given as arguments. We can keep multiple arguments also. if you give no arguments at all, cat will read from the terminal input and output it.
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 2. catting absolute paths: 
 
-### Put challenge description here
+### In this challenge, The flag file was not copied to home directory, but it was readable with cat at it's absolute path. 
 
 **Flag:** `pwn.college{Ew4ucrmOcZ7wAk2FihQc8y6MejD.QX5ETO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I ran the cat command with the absolute path of flag (/flag) as the argument and got the flag.
 
 ```
 hacker@commands~catting-absolute-paths:~$ cat /flag
@@ -42,23 +34,19 @@ pwn.college{Ew4ucrmOcZ7wAk2FihQc8y6MejD.QX5ETO0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+We can use absolute paths as arguments in cat command along with relative paths. 
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 3. more catting practice: 
 
-### Put challenge description here
+### Over here, they told we cant use the cd command, and we have to retrieve the flag by absolute path. They told the directory the flag is in also.
 
 **Flag:** `pwn.college{oZfeDzcumECToeF311f7jqw_-cx.QXwITO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I used the cat command with the absolute path of flag file as argument and got the flag.
 
 ```
 You cannot use the 'cd' command in this level, and must retrieve the flag by
@@ -71,23 +59,19 @@ pwn.college{oZfeDzcumECToeF311f7jqw_-cx.QXwITO0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+We can specify all sorts of paths as arguments to commands.
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 4. grepping for a needle in a haystack: 
 
-### Put challenge description here
+### In this challenge, the grep command was introduced. A file with huge number of words was given and they asked us to search for the flag in that. 
 
 **Flag:** `pwn.college{srPiOABwY2xVatWTZXQrx9H0Wyf.QX3EDO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I used the grep command with pwn.college (since all flags over here start with that) and the absolute path of data.txt (the file they gave) as arguments and found the flag. 
 
 ```
 hacker@commands~grepping-for-a-needle-in-a-haystack:~$ grep pwn.college /challenge/data.txt
@@ -96,23 +80,19 @@ pwn.college{srPiOABwY2xVatWTZXQrx9H0Wyf.QX3EDO0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learnt about the grep command, and 1 out of the many ways it can be used. It can be used to search a file for lines containing specific texts and print them. (usage: grep text_u_want_to_find /path/to/file).
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 5. comparing files: 
 
-### Put challenge description here
+### In this challenge, two files were given, 1 with 100 fake flags, and another with 100 fake flags and 1 real flag. We have to find the real flag.
 
 **Flag:** `pwn.college{MpPIdx9H8R6CjpWZ3FP1SVJ8QmE.01MwMDOxwiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I used the diff command with the two files they gave a arguments to find the difference between the two files and the flag was found, as it was the only difference between the two files.
 
 ```
 hacker@commands~comparing-files:~$ diff /challenge/decoys_only.txt /challenge/decoys_and_real.txt
@@ -122,23 +102,20 @@ hacker@commands~comparing-files:~$ diff /challenge/decoys_only.txt /challenge/de
 
 ## What I learned
 
-explain what you learned
+I learnt about the diff command. It compares two files line by line and shows you exactly what's different between them. We have to give the 2 files we want to compare as arguments. 
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 6. listing files: 
 
-### Put challenge description here
+### In this challenge, ls command was introduced. The '/challenge/run' was given a random name and kept in '/challenge' directory. We had to run the renamed program to get the flag.
 
 **Flag:** `pwn.college{Y9cysKwdDfcdcp8R-sr1Xn-8Nvl.QX4IDO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I used the ls command in challenge directory, which lists all the files in the directory. The rennamed program was printed and then i ran the program to get the flag. I first thought this was a file and used
+cat command but later realised it is a program which we have to run.
 
 ```
 hacker@commands~listing-files:~$ ls /challenge
@@ -155,23 +132,20 @@ pwn.college{Y9cysKwdDfcdcp8R-sr1Xn-8Nvl.QX4IDO0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned about the ls command, which lists all the files in the directories which is given as arguments. If no files are given as argument, then it will list all the files of the current working directory.
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 7. touching files: 
 
-### Put challenge description here
+### In this challenge, They asked to create two new files and run '/challenge/run' to get the flag. The touch command was introduced.
 
 **Flag:** `pwn.college{k46dOmbNYm3yJydC-DD42Gaxl0X.QXwMDO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I first changed the current working directory to tmp, since that was where they asked us to create the files. Then i used touch command to create the files they asked for and used ls command to confirm they were
+created. I then ran the program and got the flag.
 
 ```
 =hacker@commands~touching-files:~$ cd /tmp
@@ -186,23 +160,19 @@ pwn.college{k46dOmbNYm3yJydC-DD42Gaxl0X.QXwMDO0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned about the touch command, which can be used to create a new, blank file. The name of the file is the argument you give to the command. 
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 8. removing files: 
 
-### Put challenge description here
+### in this challenge, they asked us to remove a given file from the home directory, and run '/challenge/check' to get the flag.
 
 **Flag:** `pwn.college{k-c4fkdGNuVzeIcaqtFRSD5oRMw.QX2kDM1wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I first used ls command to check if the file we have to delete is there (not compulsory, idk why i did it), then i used the rm command with the name of the file as the argument to delete that file.
 
 ```
 hacker@commands~removing-files:~$ ls
@@ -217,23 +187,19 @@ pwn.college{k-c4fkdGNuVzeIcaqtFRSD5oRMw.QX2kDM1wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned about the rm command, which is used to delete files. To remove the file, you have to keep the name of the file as the argument. 
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 9. moving files: 
 
-### Put challenge description here
+### In this challenge, they asked us to move /flag file into '/tmp/hack-the-planet' directory then run '/challenge/check' to get the flag.
 
 **Flag:** `pwn.college{gs8OrnZdnK0zncz_9phxU_bQrVg.0VOxEzNxwiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I first used the mv command to move the file into the given directory, then ran the program to get the flag.
 
 ```
 hacker@commands~moving-files:~$ mv /flag /tmp/hack-the-planet
@@ -245,23 +211,19 @@ pwn.college{gs8OrnZdnK0zncz_9phxU_bQrVg.0VOxEzNxwiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned about the mv command, which is used to move files around. Usage: mv FILE_NAME DESTINATION.
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 10. Hidden files: 
 
-### Put challenge description here
+### In this challenge, the flag was hidden as a dot-prepended file in /. we have to find the flag.
 
 **Flag:** `pwn.college{QzwPzPOFYH9royDUyhAhtlykMvS.QXwUDO0wiN3kjNzEzW}}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I first used the ls command with -a and / as arguments. -a indicates to show hidden files also (files with dot-prepend (.FILENAME)). I then found the hidden flag file and used the cat command to read the flag.
 
 ```
 hacker@commands~hidden-files:~$ ls -a /
@@ -273,23 +235,19 @@ pwn.college{QzwPzPOFYH9royDUyhAhtlykMvS.QXwUDO0wiN3kjNzEzW}}
 
 ## What I learned
 
-explain what you learned
+I learned that ls doesn't list all the files by default. Linux has a convention where files that start with a '.' don't show up by default in ls.To view them with ls, you need to invoke ls with the -a flag.
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 11. An epic filesystem quest: 
 
-### Put challenge description here
+### This challenge is lengthy, with the knowledge of cd,ls, cat commands and also with the help of they clues they gave initially and also later, we have to find the flag. 
 
 **Flag:** `pwn.college{g_vcRFqTGtXLzmKGs-_3w19BYbO.QX5IDO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+With the help of the clues they gave, I played around with cd,ls,cat commands. I looked for odd looking file names (For all of them, all the letters were capital) and read those files (using cat and sometimes cd also) to find clues after clues, after a while of this the flag showed up.
 
 ```
 hacker@commands~an-epic-filesystem-quest:~$ ls /
@@ -364,11 +322,11 @@ It is: pwn.college{g_vcRFqTGtXLzmKGs-_3w19BYbO.QX5IDO0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned how and when to use ls, cd, cat commands properly.
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college. I also used the clues given after executing the commands in the terminal. 
 
 # 12. making directories: 
 
@@ -404,7 +362,7 @@ explain what you learned
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 13. finding files: 
 
@@ -474,7 +432,7 @@ explain what you learned
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The references used were the problem statements in pwn.college, where they explained each command for each challenge. 
 
 # 14. 
 
