@@ -102,11 +102,11 @@ explain what you learned
 
 Add an references or videos you used while solving the challenge.
 
-# 5. 
+# 5. comparing files: 
 
 ### Put challenge description here
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{MpPIdx9H8R6CjpWZ3FP1SVJ8QmE.01MwMDOxwiN3kjNzEzW}`
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
@@ -115,11 +115,9 @@ to put code snippets, put three backticks and for images and all other stuff you
 don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@commands~comparing-files:~$ diff /challenge/decoys_only.txt /challenge/decoys_and_real.txt
+30a31
+> pwn.college{MpPIdx9H8R6CjpWZ3FP1SVJ8QmE.01MwMDOxwiN3kjNzEzW}
 ```
 
 ## What I learned
@@ -130,11 +128,11 @@ explain what you learned
 
 Add an references or videos you used while solving the challenge.
 
-# 6. 
+# 6. listing files: 
 
 ### Put challenge description here
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{Y9cysKwdDfcdcp8R-sr1Xn-8Nvl.QX4IDO0wiN3kjNzEzW}`
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
@@ -143,11 +141,16 @@ to put code snippets, put three backticks and for images and all other stuff you
 don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
 
 ```
-#!/bin/bash
+hacker@commands~listing-files:~$ ls /challenge
+11587-renamed-run-17373  DESCRIPTION.md
+hacker@commands~listing-files:~$ cat /challenge/11587-renamed-run-17373
+#!/opt/pwn.college/bash
 
-example triple ticks for bash
-
-pwn.college{helloworld}
+echo "Yahaha, you found me! Here is your flag:"
+cat /flag
+hacker@commands~listing-files:~$ /challenge/11587-renamed-run-17373
+Yahaha, you found me! Here is your flag:
+pwn.college{Y9cysKwdDfcdcp8R-sr1Xn-8Nvl.QX4IDO0wiN3kjNzEzW}
 ```
 
 ## What I learned
@@ -158,11 +161,11 @@ explain what you learned
 
 Add an references or videos you used while solving the challenge.
 
-# 7. 
+# 7. touching files: 
 
 ### Put challenge description here
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{k46dOmbNYm3yJydC-DD42Gaxl0X.QXwMDO0wiN3kjNzEzW}`
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
@@ -171,11 +174,14 @@ to put code snippets, put three backticks and for images and all other stuff you
 don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+=hacker@commands~touching-files:~$ cd /tmp
+hacker@commands~touching-files:/tmp$ touch pwn
+hacker@commands~touching-files:/tmp$ touch college
+hacker@commands~touching-files:/tmp$ ls
+bin  college  hsperfdata_root  pwn  tmp.TpSOPGOVKK
+hacker@commands~touching-files:/tmp$ /challenge/run
+Success! Here is your flag:
+pwn.college{k46dOmbNYm3yJydC-DD42Gaxl0X.QXwMDO0wiN3kjNzEzW}
 ```
 
 ## What I learned
