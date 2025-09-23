@@ -2,7 +2,7 @@
 
 ### Put challenge description here
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{03xvramkBrv0_6MW_3P2dD4aGTy.QXxcTN0wiN3kjNzEzW}`
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
@@ -11,11 +11,8 @@ to put code snippets, put three backticks and for images and all other stuff you
 don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@commands~cat-not-the-pet-but-the-command:~$ cat flag
+pwn.college{03xvramkBrv0_6MW_3P2dD4aGTy.QXxcTN0wiN3kjNzEzW}
 ```
 
 ## What I learned
@@ -26,11 +23,11 @@ explain what you learned
 
 Add an references or videos you used while solving the challenge.
 
-# 2.
+# 2. catting absolute paths: 
 
 ### Put challenge description here
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{Ew4ucrmOcZ7wAk2FihQc8y6MejD.QX5ETO0wiN3kjNzEzW}`
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
@@ -39,11 +36,8 @@ to put code snippets, put three backticks and for images and all other stuff you
 don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@commands~catting-absolute-paths:~$ cat /flag
+pwn.college{Ew4ucrmOcZ7wAk2FihQc8y6MejD.QX5ETO0wiN3kjNzEzW}
 ```
 
 ## What I learned
@@ -54,11 +48,11 @@ explain what you learned
 
 Add an references or videos you used while solving the challenge.
 
-# 3. 
+# 3. more catting practice: 
 
 ### Put challenge description here
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{oZfeDzcumECToeF311f7jqw_-cx.QXwITO0wiN3kjNzEzW}`
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
@@ -67,11 +61,12 @@ to put code snippets, put three backticks and for images and all other stuff you
 don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+You cannot use the 'cd' command in this level, and must retrieve the flag by
+absolute path. Plus, I hid the flag in a different directory! You can find it
+in the file /usr/lib/emacsen-common/flag. Go cat it out **without** cding into
+that directory!
+hacker@commands~more-catting-practice:~$ cat /usr/lib/emacsen-common/flag
+pwn.college{oZfeDzcumECToeF311f7jqw_-cx.QXwITO0wiN3kjNzEzW}
 ```
 
 ## What I learned
@@ -82,11 +77,11 @@ explain what you learned
 
 Add an references or videos you used while solving the challenge.
 
-# 4. 
+# 4. grepping for a needle in a haystack: 
 
 ### Put challenge description here
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{srPiOABwY2xVatWTZXQrx9H0Wyf.QX3EDO0wiN3kjNzEzW}`
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
@@ -95,11 +90,8 @@ to put code snippets, put three backticks and for images and all other stuff you
 don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@commands~grepping-for-a-needle-in-a-haystack:~$ grep pwn.college /challenge/data.txt
+pwn.college{srPiOABwY2xVatWTZXQrx9H0Wyf.QX3EDO0wiN3kjNzEzW}
 ```
 
 ## What I learned
