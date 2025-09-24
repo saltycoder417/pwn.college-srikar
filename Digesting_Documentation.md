@@ -59,7 +59,7 @@ Correct usage! Your flag: pwn.college{8unln2rJJW1ed04bBus5VV8ws03.QX0EDO0wiN3kjN
 
 ## What I learned
 
-I learned about the man command. It will display (if available) the manual of the command you pass as an argument. For example: man cd. Manpages are stored in a centralized database and that database lives in the /usr/share/man directory, but we dont need to interact with it directly, we can just use the man command. 
+I learned about the man command. It will display (if available) the manual of the command you pass as an argument. For example: man challenge. Manpages are stored in a centralized database and that database lives in the /usr/share/man directory, but we dont need to interact with it directly, we can just use the man command. 
 
 ## References
 
