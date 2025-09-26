@@ -187,83 +187,79 @@ The reference i used is the challenge statement in pwn.college, and also the err
 
 # 8. Tab completion: 
 
-### Put challenge description here
+### In this challenge, they copied the flag into /challenge/pwncollege, and we can freely cat that file. But we can't type the filename. We have to tab-complete (click tab on your keyboard) to get the flag.
 
-**Flag:** ``
+**Flag:** `pwn.college{08Fvd-cOpIIqTNi2Nbp5morFro3.0FN0EzNxwiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I read /challenge/pwncollege using the cat command, but i clicked tab after typint till pwn, as they told we muct tab-complete in the challenge to get the flag. 
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@globbing~tab-completion:~$ cat /challenge/pwncollege​
+pwn.college{08Fvd-cOpIIqTNi2Nbp5morFro3.0FN0EzNxwiN3kjNzEzW}
 ```
 
 ## What I learned
 
-explain what you learned
+I learned that instead of using the star glob, which is risky as it might expand to unintended files, we can click tab when we are writing the path of the file and the shell will try to figure out what you're going to type and automatically complete it. All we have to do is click tab.
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The reference i used is the challenge statement in pwn.college.
 
-# 9. 
+# 9. Multiple options for tab completion: 
 
-### Put challenge description here
+### In this challenge, there is a /challenge/files directory with a bunch of files starting with pwncollege. It was given we have to Tab-complete from /challenge/files/p or so, and make your way to the flag.
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{EAWwMFN4A1IkLem0IZ8MGCM-OKv.0lN0EzNxwiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I first typed till /challenge/files/pwncollege- then clicked tab, it then showed me a bunch of files starting with pwncollege-. I then tried reading a few with cat command, then when i went to /challenge/files/pwncollege-fl and clicked tab, it showed two options (flamingo and flag). I then read the flag file to get the flag.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@globbing~multiple-options-for-tab-completion:~$ /challenge/files/pwncollege-
+pwncollege-family      pwncollege-flamingo    pwncollege-flyswatter  pwncollege-hacking
+hacker@globbing~multiple-options-for-tab-completion:~$ /challenge/files/pwncollege-family
+/challenge/files/pwncollege-family: /nix/store/0nxvi9r5ymdlr2p24rjj9qzyms72zld1-bash-interactive-5.2p37/share/bashdb/bashdb-main.inc: No such file or directory
+/challenge/files/pwncollege-family: warning: cannot start debugger; debugging mode disabled
+/challenge/files/pwncollege-family: line 1: No: command not found
+hacker@globbing~multiple-options-for-tab-completion:~$ /challenge/files/pwncollege-hacking
+/challenge/files/pwncollege-hacking: /nix/store/0nxvi9r5ymdlr2p24rjj9qzyms72zld1-bash-interactive-5.2p37/share/bashdb/bashdb-main.inc: No such file or directory
+/challenge/files/pwncollege-hacking: warning: cannot start debugger; debugging mode disabled
+/challenge/files/pwncollege-hacking: line 1: No: command not found
+hacker@globbing~multiple-options-for-tab-completion:~$ cat /challenge/files/pwncollege-family
+No flag in this file!
+hacker@globbing~multiple-options-for-tab-completion:~$ cat /challenge/files/pwncollege-hacking
+No flag in this file!
+hacker@globbing~multiple-options-for-tab-completion:~$ cat /challenge/files/pwncollege-fla
+pwncollege-flag      pwncollege-flamingo
+hacker@globbing~multiple-options-for-tab-completion:~$ cat /challenge/files/pwncollege-flag
+pwn.college{EAWwMFN4A1IkLem0IZ8MGCM-OKv.0lN0EzNxwiN3kjNzEzW}
 ```
 
 ## What I learned
 
-explain what you learned
+I learned that if there are more than 1 options when u click tab, then the bash will auto expand till the point where there are multiple options, or till the last common point of the multiple options, then if u hit agin for a second time, some bashes will cycle through all the options and some will show all the options available. 
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The reference i used is the challenge statement in pwn.college.
 
-# 10. 
+# 10. Tab completion on commands: 
 
-### Put challenge description here
+### In this challenge, it was given that there is a command that starts with  pwncollege, and it'll give you the flag. It told us to type pwncollege and hit the tab key to auto-complete it.
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{kGAJMVH5km2QeiuIQ-XxKJgQWtR.0VN0EzNxwiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+As given in the challenge statement, i first typed pwncollege then clicked tab, it auto completed the command and i executed the command to get the flag. 
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@globbing~tab-completion-on-commands:~$ pwncollege-25861
+Correct! Here is your flag:
+pwn.college{kGAJMVH5km2QeiuIQ-XxKJgQWtR.0VN0EzNxwiN3kjNzEzW}
 ```
 
 ## What I learned
 
-explain what you learned
+I learned that we can use the tab key for completing not only files, but we can use it for commands also. But we must be careful when we auto complete and check if the command is correct to prevent wrong commands with a similar name from being executed. 
 
 ## References
 
