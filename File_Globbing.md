@@ -146,41 +146,50 @@ I learned that we can use different types of globs into the same argument and th
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The reference i used is the challenge statement in pwn.college.
 
-# 7. 
+# 7. Exclusionary globbing: 
 
-### Put challenge description here
+### In this challenge, they asked us to go to /challenge/files and then run /challenge/run with all files that don't start with p, w, or n as argument. 
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{MO5vHewAoiz6ie6wFGVlVktVOka.QX2IDO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+As they gave, i first changed the cwd to /challenge/files using cd command. Then i ran the program along with using the square brackets glob with (!pwn) inside to exclude those files which are starting with p,w, or n (exclusionary globbing), and i kept the star glob to include all files after that. I first didnt keep the star globe, then realised that without it, no file is mentioned, as in there is no expansion. 
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@globbing~exclusionary-globbing:~$ cd /challenge/files
+hacker@globbing~exclusionary-globbing:/challenge/files$ /challenge/run [^pwn]
+Your expansion did not expand to the requested files (amazing beautiful
+challenging delightful educational fantastic great happy incredible jovial kind
+laughing magical optimistic queenly radiant splendid thrilling uplifting
+victorious xenial youthful zesty).
+Instead, it expanded to:
+[^pwn]
+hacker@globbing~exclusionary-globbing:/challenge/files$ /challenge/run [!pwn]
+Your expansion did not expand to the requested files (amazing beautiful
+challenging delightful educational fantastic great happy incredible jovial kind
+laughing magical optimistic queenly radiant splendid thrilling uplifting
+victorious xenial youthful zesty).
+Instead, it expanded to:
+[!pwn]
+hacker@globbing~exclusionary-globbing:/challenge/files$ /challenge/run [!pwn]*
+You got it! Here is your flag!
+pwn.college{MO5vHewAoiz6ie6wFGVlVktVOka.QX2IDO0wiN3kjNzEzW}
 ```
 
 ## What I learned
 
-explain what you learned
+I learned that we can also exclude some characters while globbing using square bracket glob and starting either ! or ^ inside the bracket and then keeping the letters we want to exclude. 
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+The reference i used is the challenge statement in pwn.college, and also the error given in the terminal. 
 
-# 8. 
+# 8. Tab completion: 
 
 ### Put challenge description here
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** ``
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
