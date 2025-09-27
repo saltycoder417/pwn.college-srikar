@@ -172,6 +172,170 @@ https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix
 
 ### Put challenge description here
 
+**Flag:** `pwn.college{kvxRXaJnOpaeME6Rc5E7kaVwKhe.QXwcTN0wiN3kjNzEzW}`
+
+explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
+
+to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
+
+don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+
+```
+hacker@piping~redirecting-input:~$ echo COLLEGE > PWN
+hacker@piping~redirecting-input:~$ /challenge/run < PWN
+Reading from standard input...
+Correct! You have redirected the PWN file into my standard input, and I read
+the value 'COLLEGE' out of it!
+Here is your flag:
+pwn.college{kvxRXaJnOpaeME6Rc5E7kaVwKhe.QXwcTN0wiN3kjNzEzW}
+```
+
+## What I learned
+
+explain what you learned
+
+## References
+
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
+
+# 6. grepping stored results: 
+
+### Put challenge description here
+
+**Flag:** `pwn.college{UZf8Dun3D-tIuGCqynb13bl0BC0.QX4EDO0wiN3kjNzEzW}`
+
+explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
+
+to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
+
+don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+
+```
+hacker@piping~grepping-stored-results:~$ /challenge/run > /tmp/data.txt
+[INFO] WELCOME! This challenge makes the following asks of you:
+[INFO] - the challenge will check that output is redirected to a specific file path : /tmp/data.txt
+[INFO] - the challenge will output a reward file if all the tests pass : /challenge/.data.txt
+
+[HYPE] ONWARDS TO GREATNESS!
+
+[INFO] This challenge will perform a bunch of checks.
+[INFO] If you pass these checks, you will receive the /challenge/.data.txt file.
+
+[TEST] You should have redirected my stdout to a file called /tmp/data.txt. Checking...
+
+[HINT] File descriptors are inherited from the parent, unless the FD_CLOEXEC is set by the parent on the file descriptor.
+[HINT] For security reasons, some programs, such as python, do this by default in certain cases. Be careful if you are
+[HINT] creating and trying to pass in FDs in python.
+
+[PASS] The file at the other end of my stdout looks okay!
+[PASS] Success! You have satisfied all execution requirements.
+hacker@piping~grepping-stored-results:~$ grep flag /tmp/data.txt
+[FLAG] Here is your flag:
+camouflaged
+flags
+conflagrations
+flagellating
+flagships
+conflagration
+flagellums
+camouflage
+flagons
+flagella
+flagon
+flag
+flagellated
+flagellates
+flag's
+persiflage's
+conflagration's
+flagrant
+flagon's
+flagpole's
+flagellum
+camouflage's
+flagellum's
+flagellation's
+flagstone
+camouflaging
+flagpoles
+flagship's
+flagpole
+flagged
+flagstones
+flagellation
+flagstaff
+flagging
+flagstone's
+flagrantly
+flagstaff's
+persiflage
+flagellate
+flagship
+unflagging
+flagstaffs
+camouflages
+hacker@piping~grepping-stored-results:~$ grep pwn.college /tmp/data.txt
+pwn.college{UZf8Dun3D-tIuGCqynb13bl0BC0.QX4EDO0wiN3kjNzEzW}
+```
+
+## What I learned
+
+explain what you learned
+
+## References
+
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
+
+# 7. Grepping live output: 
+
+### Put challenge description here
+
+**Flag:** `pwn.college{wQuATaH7zQ7JKVkCuog1bbDVa50.QX5EDO0wiN3kjNzEzW}`
+
+explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
+
+to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
+
+don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+
+```
+hacker@piping~grepping-live-output:~$ /challenge/run | grep pwn.college
+[INFO] WELCOME! This challenge makes the following asks of you:
+[INFO] - the challenge checks for a specific process at the other end of stdout : grep
+[INFO] - the challenge will output a reward file if all the tests pass : /challenge/.data.txt
+
+[HYPE] ONWARDS TO GREATNESS!
+
+[INFO] This challenge will perform a bunch of checks.
+[INFO] If you pass these checks, you will receive the /challenge/.data.txt file.
+
+[TEST] You should have redirected my stdout to another process. Checking...
+[TEST] Performing checks on that process!
+
+[INFO] The process' executable is /nix/store/8b4vn1iyn6kqiisjvlmv67d1c0p3j6wj-gnugrep-3.11/bin/grep.
+[INFO] This might be different than expected because of symbolic links (for example, from /usr/bin/python to /usr/bin/python3 to /usr/bin/python3.8).
+[INFO] To pass the checks, the executable must be grep.
+
+[PASS] You have passed the checks on the process on the other end of my stdout!
+[PASS] Success! You have satisfied all execution requirements.
+pwn.college{wQuATaH7zQ7JKVkCuog1bbDVa50.QX5EDO0wiN3kjNzEzW}
+```
+
+## What I learned
+
+explain what you learned
+
+## References
+
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
+
+# 8. Grepping errors: 
+
+### Put challenge description here
+
 **Flag:** ``
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
@@ -194,91 +358,8 @@ explain what you learned
 
 ## References
 
-Add an references or videos you used while solving the challenge.
-
-# 6. 
-
-### Put challenge description here
-
-**Flag:** `pwn.college{helloworld}`
-
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
-
-```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
-```
-
-## What I learned
-
-explain what you learned
-
-## References
-
-Add an references or videos you used while solving the challenge.
-
-# 7. 
-
-### Put challenge description here
-
-**Flag:** `pwn.college{helloworld}`
-
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
-
-```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
-```
-
-## What I learned
-
-explain what you learned
-
-## References
-
-Add an references or videos you used while solving the challenge.
-
-# 8. 
-
-### Put challenge description here
-
-**Flag:** `pwn.college{helloworld}`
-
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
-
-```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
-```
-
-## What I learned
-
-explain what you learned
-
-## References
-
-Add an references or videos you used while solving the challenge.
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
 
 # 9. 
 
@@ -306,7 +387,8 @@ explain what you learned
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
 
 # 10. 
 
@@ -334,7 +416,8 @@ explain what you learned
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
 
 # 11. 
 
@@ -362,7 +445,8 @@ explain what you learned
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
 
 # 12. 
 
@@ -390,7 +474,8 @@ explain what you learned
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
 
 # 13. 
 
@@ -418,7 +503,8 @@ explain what you learned
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
 
 # 14. 
 
@@ -446,4 +532,5 @@ explain what you learned
 
 ## References
 
-Add an references or videos you used while solving the challenge.
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
