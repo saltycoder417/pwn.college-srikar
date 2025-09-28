@@ -170,15 +170,11 @@ https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix
 
 # 5. Redirecting inputs: 
 
-### Put challenge description here
+### In this challenge, they asked us to redirect the input of PWN file to challenge/run, but before that we should have the PWN file contain the value COLLEGE. 
 
 **Flag:** `pwn.college{kvxRXaJnOpaeME6Rc5E7kaVwKhe.QXwcTN0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I first redirected the output of "echo COLLEGE" to PWN, as they told PWN file should have the value COLLEGE, then i redirected the input of PWN file to /challenge/run using (<) operator. 
 
 ```
 hacker@piping~redirecting-input:~$ echo COLLEGE > PWN
@@ -192,7 +188,7 @@ pwn.college{kvxRXaJnOpaeME6Rc5E7kaVwKhe.QXwcTN0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned that just like how we can redirect output, we can also redirect inputs using (<). 
 
 ## References
 
@@ -201,15 +197,11 @@ https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix
 
 # 6. grepping stored results: 
 
-### Put challenge description here
+### In this challenge, they asked us to first redirect the output of /challenge/run to /tmp/data.txt, which will result in a hundred thousand lines of text, with one of them being the flag, in /tmp/data.txt. We then have to grep that for the flag. 
 
 **Flag:** `pwn.college{UZf8Dun3D-tIuGCqynb13bl0BC0.QX4EDO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I first redirected the output of /challenge/run to /tmp/data.txt, as they asked us to do it. I then used the grep command to find for "pwn.college" in /tmp/data.txt, since all flags over here start with pwn.college. 
 
 ```
 hacker@piping~grepping-stored-results:~$ /challenge/run > /tmp/data.txt
@@ -281,7 +273,7 @@ pwn.college{UZf8Dun3D-tIuGCqynb13bl0BC0.QX4EDO0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned how we can redirect an output to a file and then use grep command to find a paticular thing. 
 
 ## References
 
@@ -290,15 +282,11 @@ https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix
 
 # 7. Grepping live output: 
 
-### Put challenge description here
+### In this challenge, they told that /challenge/run will output a hundred thousand lines of text, including the flag. We have to grep for the flag. 
 
 **Flag:** `pwn.college{wQuATaH7zQ7JKVkCuog1bbDVa50.QX5EDO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I used the pipe operator (|) to connect the standard output of /challenge/run to the input of "grep pwn.college". 
 
 ```
 hacker@piping~grepping-live-output:~$ /challenge/run | grep pwn.college
@@ -325,7 +313,7 @@ pwn.college{wQuATaH7zQ7JKVkCuog1bbDVa50.QX5EDO0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned about the pipe operator, represented by "|". With this operator, Standard output from the command to the left of the pipe will be connected to (piped into) the standard input of the command to the right of the pipe. For example: echo  "yes-yes | grep yes" will give "yes-yes" as final output and "echo no-no | grep yes" will not give any final output. 
 
 ## References
 
@@ -336,65 +324,77 @@ https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix
 
 ### Put challenge description here
 
+**Flag:** `pwn.college{IUoJStl93nSv7HUGQBrEsTzsKpC.QX1ATO0wiN3kjNzEzW}`
+
+explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
+
+to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
+
+don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+
+```
+hacker@piping~grepping-errors:~$ /challenge/run 2>& 1 | grep pwn.college
+[INFO] WELCOME! This challenge makes the following asks of you:
+[INFO] - the challenge checks for a specific process at the other end of stderr : grep
+[INFO] - the challenge will output a reward file if all the tests pass : /challenge/.data.txt
+
+[HYPE] ONWARDS TO GREATNESS!
+
+[INFO] This challenge will perform a bunch of checks.
+[INFO] If you pass these checks, you will receive the /challenge/.data.txt file.
+
+[TEST] You should have redirected my stderr to another process. Checking...
+[TEST] Performing checks on that process!
+
+[INFO] The process' executable is /nix/store/8b4vn1iyn6kqiisjvlmv67d1c0p3j6wj-gnugrep-3.11/bin/grep.
+[INFO] This might be different than expected because of symbolic links (for example, from /usr/bin/python to /usr/bin/python3 to /usr/bin/python3.8).
+[INFO] To pass the checks, the executable must be grep.
+
+[PASS] You have passed the checks on the process on the other end of my stderr!
+[PASS] Success! You have satisfied all execution requirements.
+pwn.college{IUoJStl93nSv7HUGQBrEsTzsKpC.QX1ATO0wiN3kjNzEzW}
+```
+
+## What I learned
+
+explain what you learned
+
+## References
+
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
+
+# 9. Filtering with grep -v: 
+
+### Put challenge description here
+
+**Flag:** `pwn.college{sG9x1wKVrRN3dA1kwCPKNTYP5-B.0FOxEzNxwiN3kjNzEzW}`
+
+explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
+
+to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
+
+don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+
+```
+hacker@piping~filtering-with-grep-v:~$ /challenge/run | grep -v DECOY
+pwn.college{sG9x1wKVrRN3dA1kwCPKNTYP5-B.0FOxEzNxwiN3kjNzEzW}
+```
+
+## What I learned
+
+explain what you learned
+
+## References
+
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
+
+# 10. Duplicating piped date with tee: 
+
+### Put challenge description here
+
 **Flag:** ``
-
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
-
-```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
-```
-
-## What I learned
-
-explain what you learned
-
-## References
-
-references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
-https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
-
-# 9. 
-
-### Put challenge description here
-
-**Flag:** `pwn.college{helloworld}`
-
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
-
-```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
-```
-
-## What I learned
-
-explain what you learned
-
-## References
-
-references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
-https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
-
-# 10. 
-
-### Put challenge description here
-
-**Flag:** `pwn.college{helloworld}`
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
