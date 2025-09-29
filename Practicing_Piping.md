@@ -429,9 +429,63 @@ https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix
 
 # 11. Process substitution for input: 
 
-### 
+### In this challenge, they told we have two sets of command outputs: /challenge/print_decoys, which will print a bunch of decoy flags, and /challenge/print_decoys_and_flag which will print those same decoys plus the real flag. They asked us to use Use process substitution with diff to compare the outputs of these two programs and find the flag.
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{03eX4x40XncskGOyDXrTL5tv9LS.0lNwMDOxwiN3kjNzEzW}`
+
+I used the diff command with input process substitution of /challenge/print_decoys and /challenge/print_decoys_and_flags as arguments (diff <(/challenge/print_decoys) <(/challenge/print_decoys_and_flag)) to get the real flag. 
+
+```
+hacker@piping~process-substitution-for-input:~$ diff <(/challenge/print_decoys) <(/challenge/print_decoys_and_flag)
+65a66
+> pwn.college{03eX4x40XncskGOyDXrTL5tv9LS.0lNwMDOxwiN3kjNzEzW}
+```
+
+## What I learned
+
+I learned that Linux follows the philosophy that "everything is a file". That is, the system strives to provide file-like access to most resources, including the input and output of running programs! The shell follows this philosophy, allowing you to, for example, use any utility that takes file arguments on the command line and hook it up to the output of programs. I also learned about process substitition, where we can hook input and output of programs to arguments of commands. For reading from a command (input process substitution), we use <(command). When we write "<(command)", bash will run the command and hook up its output to a temporary file that it will create. This isn't a real file, it's called a named pipe, in that it has a file name. 
+
+## References
+
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
+
+# 12. Writing to multiple programs: 
+
+### Put challenge description here
+
+**Flag:** `pwn.college{g1PoIj6htmyfNhaY9ggECPqeQ9p.QXwgDN1wiN3kjNzEzW}`
+
+explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
+
+to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
+
+don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+
+```
+hacker@piping~writing-to-multiple-programs:~$ /challenge/hack | tee >(/challenge/the) >(/challenge/planet)
+This secret data must directly and simultaneously make it to /challenge/the and
+/challenge/planet. Don't try to copy-paste it; it changes too fast.
+61518438498827370
+Congratulations, you have duplicated data into the input of two programs! Here
+is your flag:
+pwn.college{g1PoIj6htmyfNhaY9ggECPqeQ9p.QXwgDN1wiN3kjNzEzW}
+```
+
+## What I learned
+
+explain what you learned
+
+## References
+
+references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
+https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
+
+# 13. Split piping stderr and stdout: 
+
+### Put challenge description here
+
+**Flag:** ``
 
 explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
 
@@ -456,87 +510,30 @@ explain what you learned
 references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
 https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
 
-# 12. 
+# 14. Named pipes: 
 
-### Put challenge description here
+### In this challenge, they asked us to to create a /tmp/flag_fifo file and redirect the stdout of /challenge/run to it. If we are successful, /challenge/run will write the flag into the FIFO.
 
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{wcUMav4UxiZhpybx2g2amfOHi_z.01MzMDOxwiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I first made a new fifo by using the mkfifo command. I then redirected the output of /challenge/run to the fifo file using ">", then i read the fifo file to get the flag.
 
 ```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
+hacker@piping~named-pipes:~$ mkfifo /tmp/flag_fifo
+hacker@piping~named-pipes:~$ /challenge/run > /tmp/flag_fifo
+hacker@piping~named-pipes:~$ cat /tmp/flag_fifo
+You've correctly redirected /challenge/run's stdout to a FIFO at
+/tmp/flag_fifo! Here is your flag:
+pwn.college{wcUMav4UxiZhpybx2g2amfOHi_z.01MzMDOxwiN3kjNzEzW}
 ```
 
 ## What I learned
 
-explain what you learned
-
-## References
-
-references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
-https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
-
-# 13. 
-
-### Put challenge description here
-
-**Flag:** `pwn.college{helloworld}`
-
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
-
-```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
-```
-
-## What I learned
-
-explain what you learned
-
-## References
-
-references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
-https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
-
-# 14. 
-
-### Put challenge description here
-
-**Flag:** `pwn.college{helloworld}`
-
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
-
-```
-#!/bin/bash
-
-example triple ticks for bash
-
-pwn.college{helloworld}
-```
-
-## What I learned
-
-explain what you learned
+I learned about fifo (First In First Out), which are basically named pipes. We can make a fifo by using the mkfifo command. Unlike the automatic named pipes from process substitution: You control where FIFOs are created, they persist until you delete them, any process can write to them by path (e.g., echo hi > my_pipe), you can see them with ls and examine them like files. FIFO block any operations on them until both the read side of the pipe and the write side of the pipe are ready. The key difference between using FIFO and normal files is: 
+1) No disk storage: FIFOs pass data directly between processes in memory - nothing is saved to disk
+2) Ephemeral data: Once data is read from a FIFO, it's gone (unlike files where data persists)
+3) Automatic synchronization: Writers block until the readers are ready, and vice-versa. This is actually useful! It provides automatic synchronization. Consider the example above: with a FIFO, it doesn't matter    if cat myfifo or echo pwn > myfifo is executed first; each would just wait for the other. With files, you need to make sure to execute the writer before the reader.
+4) Complex data flows: FIFOs are useful for facilitating complex data flows, merging and splitting data in flexible ways, and so on. For example, FIFOs support multiple readers and writers
 
 ## References
 
