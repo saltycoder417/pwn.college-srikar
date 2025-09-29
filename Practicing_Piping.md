@@ -322,15 +322,11 @@ https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix
 
 # 8. Grepping errors: 
 
-### Put challenge description here
+### This challenge is similar to the previous challenge, /challenge/run will overwhelm us with output, but this time on standard error. They asked us to grep through it to find the flag.
 
 **Flag:** `pwn.college{IUoJStl93nSv7HUGQBrEsTzsKpC.QX1ATO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I redirected the standard error of /challenge/run to standard output, by using "2>& 1", here ">&" is for redirecting a file descriptor to another file descriptor, then used the pipe operator to connect this output to the input of grep command to find the flag. 
 
 ```
 hacker@piping~grepping-errors:~$ /challenge/run 2>& 1 | grep pwn.college
@@ -357,7 +353,7 @@ pwn.college{IUoJStl93nSv7HUGQBrEsTzsKpC.QX1ATO0wiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned about ">&" operator, which is used to redirect a file descriptor to another file descriptor. for example: "2>& 1" will redirect FD2 (standard error) to FD1 (standard output). I also learned that the "|" operator redirects only standard output to another program, and there is no 2| form of the operator, It can only redirect standard output.
 
 ## References
 
@@ -366,15 +362,11 @@ https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix
 
 # 9. Filtering with grep -v: 
 
-### Put challenge description here
+### In this challenge, /challenge/run will output the flag to stdout, but it will also output over 1000 decoy flags (containing the word DECOY somewhere in the flag) mixed in with the real flag. They told we need to filter out the decoys while keeping the real flag, using grep -v. 
 
 **Flag:** `pwn.college{sG9x1wKVrRN3dA1kwCPKNTYP5-B.0FOxEzNxwiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I connected the output of /challenge/run to grep command with -v and DECOY as arguments using the pipe operator (|). 
 
 ```
 hacker@piping~filtering-with-grep-v:~$ /challenge/run | grep -v DECOY
@@ -383,7 +375,7 @@ pwn.college{sG9x1wKVrRN3dA1kwCPKNTYP5-B.0FOxEzNxwiN3kjNzEzW}
 
 ## What I learned
 
-explain what you learned
+I learned 1 more use of grep, with the -v argument, the command shows lines which do not match a pattern. For example: if a file has "hello world" and "hello man" and we use "grep -v world" on this file, it will print "Hello man" on the terminal. 
 
 ## References
 
@@ -392,36 +384,52 @@ https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix
 
 # 10. Duplicating piped date with tee: 
 
-### Put challenge description here
+### In this challenge, they told us that /challenge/pwn must be piped into /challenge/college, but we need to intercept the data to see what pwn needs from you, using the tee command. 
 
-**Flag:** ``
+**Flag:** `pwn.college{QVKNeSnLuFX9mWOzVtN7y8dxU6i.QXxITO0wiN3kjNzEzW}`
 
-explain your solve and how you got to it, explain any incorrect tangents you went on while solving.
-
-to put code snippets, put three backticks and for images and all other stuff you wish to put here, refer to the documentation given to you.
-
-don't style it too much, your solve should be readable and understandable by you so that when you have doubts, you refer to your own writeups, instead of gpt.
+I first used the ls command to list all the files in the home directory. I read PWN and COLLEGE files, but nothing were there. I then tried getting output of /challenge/pwn, however that didnt work as well. I then used the tee command to duplicate the output of /challenge/pwn to the PWN file, then i read the file to get the secret code and then i used that secret code as argument with /challenge/pwn and connected the output of that with /challenge/college using the pipe operator (|) to get the flag. 
 
 ```
-#!/bin/bash
+hacker@piping~duplicating-piped-data-with-tee:~$ ls
+COLLEGE  Desktop  PWN  cmd_output  hello  i  instructions  myflag  not-the-flag  the-flag
+hacker@piping~duplicating-piped-data-with-tee:~$ cat PWN
+COLLEGE
+hacker@piping~duplicating-piped-data-with-tee:~$ cat COLLEGE
+PWN
+hacker@piping~duplicating-piped-data-with-tee:~$ /challenge/pwn
+Processing...
+You must pipe the output of /challenge/pwn into /challenge/college (or 'tee'
+for debugging).
+hacker@piping~duplicating-piped-data-with-tee:~$ /challenge/pwn | tee PWN | /challenge/college
+Processing...
+WARNING: you are overwriting file PWN with tee's output...
+The input to 'college' does not contain the correct secret code! This code
+should be provided by the 'pwn' command. HINT: use 'tee' to intercept the
+output of 'pwn' and figure out what the code needs to be.
+hacker@piping~duplicating-piped-data-with-tee:~$ cat PWN
+Usage: /challenge/pwn --secret [SECRET_ARG]
 
-example triple ticks for bash
-
-pwn.college{helloworld}
+SECRET_ARG should be "QVKNeSnL"
+hacker@piping~duplicating-piped-data-with-tee:~$ /challenge/pwn --secret QVKNeSnL | /challenge/college
+Processing...
+Correct! Passing secret value to /challenge/college...
+Great job! Here is your flag:
+pwn.college{QVKNeSnLuFX9mWOzVtN7y8dxU6i.QXxITO0wiN3kjNzEzW}
 ```
 
 ## What I learned
 
-explain what you learned
+I learned about the tee command, which can be used to duplicate data flowing through your pipes to any number of files provided on the command line. For example: "echo hi | tee blah hello" will duplicate the output of "echo hi" which is hi to the files "blah" and "hello", along with the standard output. Basically we end up with three copies of the piped-in data: one to stdout, one to the blah file, and one to the hello file. 
 
 ## References
 
 references used: challenge statements in https://pwn.college/linux-luminarium/piping/, https://www.rozmichelle.com/pipes-forks-dups/, 
 https://web.archive.org/web/20220629044814/http://bencane.com:80/2012/04/16/unix-shell-the-art-of-io-redirection/.
 
-# 11. 
+# 11. Process substitution for input: 
 
-### Put challenge description here
+### 
 
 **Flag:** `pwn.college{helloworld}`
 
