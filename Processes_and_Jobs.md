@@ -87,20 +87,49 @@ I learnt about how we can interrupt a process using ctrl-c. Ctrl-c sends an "int
 pwn.college instructions and https://catern.com/posts/terminal_quirks.html. 
 
 # 4. Killing misbehaving processes: 
-### In this challenge, they they told that /challenge/run will refuse to run while /challenge/dont_run is running. We must find the dont_run process and kill it, then run /challenge/run to get the flag. 
+### In this challenge, they they told that there's a decoy process that's hogging a critical resource - a named pipe (FIFO) at /tmp/flag_fifo into which /challenge/run wants to write your flag. We need to kill this process, then run /challenge/run to get the flag without being overwhelmed by decoys (we don't need to redirect its output; it'll write to the FIFO on its own).
+
+## My solve
+**pwn.college{4lcle7dBRtuk0k0YKx6nkg8XynW.0FNzMDOxwiN3kjNzEzW}**
+
+I first used the ps aux command and then redirected that output to grep /challenge/decoy to find that process using pipe operator. After i found the PID of the decoy process, i terminated/killed the process using kill command. Then i ran /challenge/run, which sent the flag to /tmp/flag_fifo. Then i read the /tmp/flag_fifo file to get the flag.  
+
+```
+hacker@processes~killing-misbehaving-processes:~$ ps aux | grep /challenge/decoy
+hacker       139  0.0  0.0 230696  2560 pts/1    S+   12:44   0:00  /challenge/decoy > /tmp/flag_fifo
+hacker@processes~killing-misbehaving-processes:~$ kill 139
+hacker@processes~killing-misbehaving-processes:~$ /challenge/run
+Sending the flag to /tmp/flag_fifo!
+hacker@processes~killing-misbehaving-processes:~$ cat /tmp/flag_fifo
+pwn.college{4lcle7dBRtuk0k0YKx6nkg8XynW.0FNzMDOxwiN3kjNzEzW}
+```
+
+## What I learnt
+I learnt how to use the ps and kill command effectively. 
+
+## References
+pwn.college instructions.
+
+# 5. Suspending processes: 
+### In this challenge, they they told that there's a decoy process that's hogging a critical resource - a named pipe (FIFO) at /tmp/flag_fifo into which /challenge/run wants to write your flag. We need to kill this process, then run /challenge/run to get the flag without being overwhelmed by decoys (we don't need to redirect its output; it'll write to the FIFO on its own).
 
 ## My solve
 ****
 
-I first used the ps command with aux argument, then connected that output with "grep dont_run" command, to find the /challenge/dont_run process. I found out the PID of that process, then i used the kill command to
-terminate the process. I then ran /challenge/run to get the flag. 
+I first used the ps aux command and then redirected that output to grep /challenge/decoy to find that process using pipe operator. After i found the PID of the decoy process, i terminated/killed the process using kill command. Then i ran /challenge/run, which sent the flag to /tmp/flag_fifo. Then i read the /tmp/flag_fifo file to get the flag.  
 
 ```
-
+hacker@processes~killing-misbehaving-processes:~$ ps aux | grep /challenge/decoy
+hacker       139  0.0  0.0 230696  2560 pts/1    S+   12:44   0:00  /challenge/decoy > /tmp/flag_fifo
+hacker@processes~killing-misbehaving-processes:~$ kill 139
+hacker@processes~killing-misbehaving-processes:~$ /challenge/run
+Sending the flag to /tmp/flag_fifo!
+hacker@processes~killing-misbehaving-processes:~$ cat /tmp/flag_fifo
+pwn.college{4lcle7dBRtuk0k0YKx6nkg8XynW.0FNzMDOxwiN3kjNzEzW}
 ```
 
 ## What I learnt
-I learnt about the kill command, which will terminate a process when we pass the PID of the process as the argument. 
+I learnt how to use the ps and kill command effectively. 
 
 ## References
 pwn.college instructions.
