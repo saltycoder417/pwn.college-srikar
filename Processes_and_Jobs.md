@@ -61,3 +61,46 @@ I learnt about the kill command, which will terminate a process when we pass the
 
 ## References
 pwn.college instructions.
+
+# 3. Interrupting processes: 
+### In this challenge, they they told that /challenge/run will refuse to give the flag until we interrupt it.  
+
+## My solve
+**pwn.college{gzXfWOQ7gULN-Ub8SvabqKfC4uH.QXzQDO0wiN3kjNzEzW}**
+
+I first ran /challenge/run then clicked ctrl-c at last and then entered. But that didnt work, so i ran /challenge/run and then after clicking enter, i used ctrl-c, with which i got the flag.  
+
+```
+hacker@processes~interrupting-processes:~$ /challenge/run ^C
+hacker@processes~interrupting-processes:~$ /challenge/run
+I could give you the flag... but I won't, until this process exits. Remember,
+you can force me to exit with Ctrl-C. Try it now!
+^C
+Good job! You have used Ctrl-C to interrupt this process! Here is your flag:
+pwn.college{gzXfWOQ7gULN-Ub8SvabqKfC4uH.QXzQDO0wiN3kjNzEzW}
+```
+
+## What I learnt
+I learnt about how we can interrupt a process using ctrl-c. Ctrl-c sends an "interrupt" to whatever application is waiting on input from the terminal and, typically, this causes the application to cleanly exit.
+
+## References
+pwn.college instructions and https://catern.com/posts/terminal_quirks.html. 
+
+# 4. Killing misbehaving processes: 
+### In this challenge, they they told that /challenge/run will refuse to run while /challenge/dont_run is running. We must find the dont_run process and kill it, then run /challenge/run to get the flag. 
+
+## My solve
+****
+
+I first used the ps command with aux argument, then connected that output with "grep dont_run" command, to find the /challenge/dont_run process. I found out the PID of that process, then i used the kill command to
+terminate the process. I then ran /challenge/run to get the flag. 
+
+```
+
+```
+
+## What I learnt
+I learnt about the kill command, which will terminate a process when we pass the PID of the process as the argument. 
+
+## References
+pwn.college instructions.
