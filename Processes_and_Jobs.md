@@ -111,25 +111,126 @@ I learnt how to use the ps and kill command effectively.
 pwn.college instructions.
 
 # 5. Suspending processes: 
-### In this challenge, they they told that there's a decoy process that's hogging a critical resource - a named pipe (FIFO) at /tmp/flag_fifo into which /challenge/run wants to write your flag. We need to kill this process, then run /challenge/run to get the flag without being overwhelmed by decoys (we don't need to redirect its output; it'll write to the FIFO on its own).
+### In this challenge, they told that this level's run wants to see another copy of itself running and using the same terminal. How? Use the terminal to launch it, then suspend it, then launch another copy while the first is suspended. 
 
 ## My solve
-****
+**pwn.college{YUuQ1B0rpR8ps6KjWPXRNtkP6VX.QX1QDO0wiN3kjNzEzW}**
 
-I first used the ps aux command and then redirected that output to grep /challenge/decoy to find that process using pipe operator. After i found the PID of the decoy process, i terminated/killed the process using kill command. Then i ran /challenge/run, which sent the flag to /tmp/flag_fifo. Then i read the /tmp/flag_fifo file to get the flag.  
+I first ran /challenge/run, then i clicked ctrl-z to suspend the process. Then i ran /challenge/run again to get the flag. 
 
 ```
-hacker@processes~killing-misbehaving-processes:~$ ps aux | grep /challenge/decoy
-hacker       139  0.0  0.0 230696  2560 pts/1    S+   12:44   0:00  /challenge/decoy > /tmp/flag_fifo
-hacker@processes~killing-misbehaving-processes:~$ kill 139
-hacker@processes~killing-misbehaving-processes:~$ /challenge/run
-Sending the flag to /tmp/flag_fifo!
-hacker@processes~killing-misbehaving-processes:~$ cat /tmp/flag_fifo
-pwn.college{4lcle7dBRtuk0k0YKx6nkg8XynW.0FNzMDOxwiN3kjNzEzW}
+hacker@processes~suspending-processes:~$ /challenge/run
+I'll only give you the flag if there's already another copy of me running in 
+this terminal... Let's check!
+
+UID          PID    PPID  C STIME TTY          TIME CMD
+root         146     136  0 13:10 pts/0    00:00:00 bash /challenge/run
+root         148     146  0 13:10 pts/0    00:00:00 ps -f
+
+I don't see a second me!
+
+To pass this level, you need to suspend me and launch me again! You can 
+background me with Ctrl-Z or, if you're not ready to do that for whatever 
+reason, just hit Enter and I'll exit!
+^Z
+[1]+  Stopped                 /challenge/run
+hacker@processes~suspending-processes:~$ /challenge/run
+I'll only give you the flag if there's already another copy of me running in 
+this terminal... Let's check!
+
+UID          PID    PPID  C STIME TTY          TIME CMD
+root         146     136  0 13:10 pts/0    00:00:00 bash /challenge/run
+root         153     136  0 13:10 pts/0    00:00:00 bash /challenge/run
+root         155     153  0 13:10 pts/0    00:00:00 ps -f
+
+Yay, I found another version of me! Here is the flag:
+pwn.college{YUuQ1B0rpR8ps6KjWPXRNtkP6VX.QX1QDO0wiN3kjNzEzW}
 ```
 
 ## What I learnt
-I learnt how to use the ps and kill command effectively. 
+I learned that we can suspend processes to the background using ctrl-z. 
+
+## References
+pwn.college instructions.
+
+
+# 6. Resuming processes: 
+### In this challenge, they told that this challenge's run needs you to suspend it, then resume it to get the flag. 
+
+## My solve
+**pwn.college{UuACM43NkrNTWpTc9V5QjZEeY2k.QX2QDO0wiN3kjNzEzW}**
+
+I first ran /challenge/run process, then i suspended it with ctrl-z. I then resumed the process using fg command with the process as argument and got the flag. 
+
+```
+hacker@processes~resuming-processes:~$ /challenge/run
+Let's practice resuming processes! Suspend me with Ctrl-Z, then resume me with 
+the 'fg' command! Or just press Enter to quit me!
+^Z
+[1]+  Stopped                 /challenge/run
+hacker@processes~resuming-processes:~$ fg /challenge/run
+/challenge/run
+I'm back! Here's your flag:
+pwn.college{UuACM43NkrNTWpTc9V5QjZEeY2k.QX2QDO0wiN3kjNzEzW}
+Don't forget to press Enter to quit me!
+```
+
+## What I learnt
+I learned about the fg command, which is a builtin hat takes the suspended process, resumes it, and puts it back in the foreground of your terminal. 
+
+## References
+pwn.college instructions.
+
+# 7. Backgrounding processes: 
+### In this challenge, they told that this challenge's run wants to see another copy of itself running, not suspended, and using the same terminal. How? Use the terminal to launch it, then suspend it, then background it with bg and launch another copy while the first is running in the background.  
+
+## My solve
+**pwn.college{UzADlPjqi4q8HR1-2ztU8s8Elxi.QX3QDO0wiN3kjNzEzW}**
+
+I first ran /challenge/run, then suspended the process with ctrl-z. Then i ran it in the background using the bg command and then ran the process again in the shell commandline to get the flag.
+
+```
+hacker@processes~backgrounding-processes:~$ /challenge/run
+I'll only give you the flag if there's already another copy of me running *and 
+not suspended* in this terminal... Let's check!
+
+UID          PID STAT CMD
+root         146 S+   bash /challenge/run
+root         148 R+   ps -o user=UID,pid,stat,cmd
+
+I don't see a second me!
+
+To pass this level, you need to suspend me, resume the suspended process in the 
+background, and then launch a new version of me! You can background me with 
+Ctrl-Z (and resume me in the background with 'bg') or, if you're not ready to 
+do that for whatever reason, just hit Enter and I'll exit!
+^Z
+[1]+  Stopped                 /challenge/run
+hacker@processes~backgrounding-processes:~$ bg /challenge/run
+[1]+ /challenge/run &
+hacker@processes~backgrounding-processes:~$ 
+
+
+Yay, I'm now running the background! Because of that, this text will probably 
+overlap weirdly with the shell prompt. Don't panic; just hit Enter a few times 
+to scroll this text out.
+
+hacker@processes~backgrounding-processes:~$ /challenge/run
+I'll only give you the flag if there's already another copy of me running *and 
+not suspended* in this terminal... Let's check!
+
+UID          PID STAT CMD
+root         146 S    bash /challenge/run
+root         156 S    sleep 6h
+root         157 S+   bash /challenge/run
+root         159 R+   ps -o user=UID,pid,stat,cmd
+
+Yay, I found another version of me running in the background! Here is the flag:
+pwn.college{UzADlPjqi4q8HR1-2ztU8s8Elxi.QX3QDO0wiN3kjNzEzW}
+```
+
+## What I learnt
+I learned about the bg command, which will basically resume the process like fg, but in the background, while fg will resume it in the foreground. This will allow the process to keep running, while giving you your shell back to invoke more commands in the meantime. 
 
 ## References
 pwn.college instructions.
