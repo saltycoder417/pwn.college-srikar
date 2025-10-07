@@ -234,3 +234,93 @@ I learned about the bg command, which will basically resume the process like fg,
 
 ## References
 pwn.college instructions.
+
+# 8. Foregrounding processes: 
+### In this challenge, they told that this challenge's run process should first be suspended, then resumed in the background, then it has to be brought to the foreground without suspending it.   
+
+## My solve
+**pwn.college{85xHe8dQ1jWHMsNJSy6dMBFhsvP.QX4QDO0wiN3kjNzEzW}**
+
+I first ran /challenge/run, it then showed me what i should do to get the flag. I first clicked ctrl-z to suspend the run process. Then i resumed it in the background using the bg command. I then brought it to the foreground using the fg command. 
+
+```
+hacker@processes~foregrounding-processes:~$ /challenge/run
+To pass this level, you need to suspend me, resume the suspended process in the
+background, and *then* foreground it without re-suspending it! You can
+background me with Ctrl-Z (and resume me in the background with 'bg') or, if
+you're not ready to do that for whatever reason, just hit Enter and I'll exit!
+^Z
+[1]+  Stopped                 /challenge/run
+hacker@processes~foregrounding-processes:~$ bg /challenge/run
+[1]+ /challenge/run &
+hacker@processes~foregrounding-processes:~$
+
+
+Yay, I'm now running the background! Because of that, this text will probably
+overlap weirdly with the shell prompt. Don't panic; just hit Enter a few times
+to scroll this text out. After that, resume me into the foreground with 'fg';
+I'll wait.
+
+hacker@processes~foregrounding-processes:~$ fg /challenge/run
+/challenge/run
+YES! Great job! I'm now running in the foreground. Hit Enter for your flag!
+
+pwn.college{85xHe8dQ1jWHMsNJSy6dMBFhsvP.QX4QDO0wiN3kjNzEzW}
+```
+
+## What I learnt
+I learned that we can foreground a backgrounded process with fg, just like how we foreground a suspended process. 
+
+## References
+pwn.college instructions, and the instructions given in the bash when challenge started. 
+
+# 9. Starting backgrounded processes: 
+### In this challenge, they told that this challenge's run process should be launched backgrounded to get the flag.   
+
+## My solve
+**pwn.college{UjDQafZwzc-cQBeEXeAkJqvbsEm.QX5QDO0wiN3kjNzEzW}**
+
+I ran /challenge/run process, appended with "&", so that it will be backgrounded.  
+
+```
+hacker@processes~starting-backgrounded-processes:~$ /challenge/run &
+[1] 139
+
+Yay, you started me in the background! Because of that, this text will probably
+overlap weirdly with the shell prompt, but you're used to that by now...
+
+Anyways! Here is your flag!
+pwn.college{UjDQafZwzc-cQBeEXeAkJqvbsEm.QX5QDO0wiN3kjNzEzW}
+
+[1]+  Done                    /challenge/run
+```
+
+## What I learnt
+I learned that we dont have to suspend a process to background them like previous challenges, we can start/launch them backgrounded by appending the command with "&".  
+
+## References
+pwn.college instructions, and the instructions given in the bash when challenge started.
+
+# 10. Process exit codes: 
+### In this challenge, they told that we must retrieve the exit code returned by /challenge/get-code and then run /challenge/submit-code with that error code as an argument to get the flag.  
+
+## My solve
+**pwn.college{8DBch8sLorLolrrycHy9TYkYAdJ.QX5YDO1wiN3kjNzEzW}**
+
+I first ran /challenge/get-code. Then i read the exit code of the command using the "?" variable with echo command (echo $?). We have to use "$" because "?" is a variable. I then got the error code, which was 40, then i ran /challenge/submit-code with 40 as argument to get the flag. 
+
+```
+hacker@processes~process-exit-codes:~$ /challenge/get-code
+Exiting with an error code!
+hacker@processes~process-exit-codes:~$ echo $?
+40
+hacker@processes~process-exit-codes:~$ /challenge/submit-code 40
+CORRECT! Here is your flag:
+pwn.college{8DBch8sLorLolrrycHy9TYkYAdJ.QX5YDO1wiN3kjNzEzW}
+```
+
+## What I learnt
+I learned how we can access the error codes of of the most recently-terminated command using the special "?" variable (don't forget to prepend it with "$" to read its value). 
+
+## References
+pwn.college instructions, and the instructions given in the bash when challenge started.
