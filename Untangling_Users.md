@@ -78,3 +78,22 @@ I learned how we can crack passwords using john. The passwords used to be stored
 
 ## References
 pwn.college instructions and https://www.cyberciti.biz/faq/understanding-etcshadow-file/
+
+# 4. Using sudo: 
+### In this challenge, they told that we will have sudo access, and we have to use it to read the flag.
+
+## My solve
+**pwn.college{8FELIvSn-nrj6a-g8d7RzLCkkIZ.QX4UDN1wiN3kjNzEzW}**
+
+I used the cat command on /flag with sudo at the start to read the flag with root access.  
+
+```
+hacker@users~using-sudo:~$ sudo cat /flag
+pwn.college{8FELIvSn-nrj6a-g8d7RzLCkkIZ.QX4UDN1wiN3kjNzEzW}
+```
+
+## What I learnt
+I learned that we can put sudo at the start of the command to run the command as a root. Unlike su, which defaults to launching a shell as a specified user, sudo defaults to running a command as root. Unlike su, which relies on password authentication, sudo checks policies to determine whether the user is authorized to run commands as root. These policies are defined in /etc/sudoers. 
+
+## References
+pwn.college instructions and https://www.digitalocean.com/community/tutorials/how-to-edit-the-sudoers-file. 
