@@ -39,3 +39,25 @@ I learned about the chgrp command, which is used to change the group ownership o
 
 ## References
 pwn.college instructions, also videos over there.  
+
+# 3. Fun with group names: 
+### In this challenge, they asked us to change the group ownership of the /flag file to whatever group the user is in, and then read the file for the flag. They told that the flag is readable by whatever group owns it. They also told that it is possible in this challenge to invoke chgrp as the hacker user. 
+
+## My solve
+****
+
+I first used the id command to see what groups im in. Then i used the chgrp command to change the group ownership of /flag file to hacker group from root. I then read the file using cat command to get the flag.
+
+```
+hacker@permissions~groups-and-files:~$ id
+uid=1000(hacker) gid=1000(hacker) groups=1000(hacker)
+hacker@permissions~groups-and-files:~$ chgrp hacker /flag
+hacker@permissions~groups-and-files:~$ cat /flag
+pwn.college{kImWPPWaejiup302i_ZWJzURCmT.QXxcjM1wiN3kjNzEzW}
+```
+
+## What I learnt
+I learned about the chgrp command, which is used to change the group ownership of a file. syntax: chgrp "group name" "file name". I also learned that we can check what groups you are part of with the id command. 
+
+## References
+pwn.college instructions, also videos over there.
