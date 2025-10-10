@@ -155,3 +155,106 @@ Ctrl-A " - bring up a selection menu of all of the windows
 
 ## References
 pwn.college instructions. 
+
+# 5. Detaching and attaching (tmux): 
+### In this challenge, they asked us to first launch tmux, then detach from it, then run /challenge/run in the main terminal, which will send the flag to your detached session, then reattach to the session to get the flag. 
+
+## My solve
+**pwn.college{gEkIlzgfrpgN-mVneOgRi-Ds5C_.0VO4IDOxwiN3kjNzEzW}**
+
+I launched a new session using tmux, then i detached from the session using ctrl-B and then d (after releasing ctrl-B), and then ran /challenge/run in the main terminal. Then the flag was printed in the session, so i went back to the session using "tmux a" and got the flag. 
+
+```
+Main terminal:
+hacker@terminal-multiplexing~detaching-and-attaching-tmux:~$ tmux
+[detached (from session 0)]
+hacker@terminal-multiplexing~detaching-and-attaching-tmux:~$ /challenge/run
+Found detached tmux session: 0
+Sending flag to your tmux session...
+
+Flag sent! Now reattach to your tmux session with:
+  tmux attach
+
+You'll find the flag waiting for you there!
+hacker@terminal-multiplexing~detaching-and-attaching-tmux:~$ tmux a-
+unknown command: a-
+hacker@terminal-multiplexing~detaching-and-attaching-tmux:~$ tmux a
+[detached (from session 0)]
+
+tmux:
+hacker@terminal-multiplexing~detaching-and-attaching-tmux:~$  echo Congratulations, here is your flag: pwn.college{gEkIlzgfrpgN-mVneOgRi-Ds5C_.0VO4IDOxwiN3kjNzEzW}
+Congratulations, here is your flag: pwn.college{gEkIlzgfrpgN-mVneOgRi-Ds5C_.0VO4IDOxwiN3kjNzEzW}
+```
+
+## What I learned
+I learned about terminal multiplexer (tmux) which is similar to screen, but with different key bindings. The biggest difference between them is that tmux uses ctrl-B as its command prefix while screen uses ctrl-A. 
+
+To detach from tmux- ctrl-B followed by d.
+
+tmux ls - List sessions
+
+tmux attach or tmux a - Reattach to session
+
+## References
+pwn.college instructions. 
+
+
+# 6. Switching windows (tmux): 
+### In this challenge, they told that they created a tmux session with 2 windows, window 1 has a welcome message, and window 0 has the flag. We have to go to window 0 to get the flag. 
+
+## My solve
+**pwn.college{EZ8P2JLM0gJsLJmaD_03Ckr_8LJ.0FM5IDOxwiN3kjNzEzW}**
+
+I first listed all the tmux sessions using tmus ls. Since there was only 1 session, i entered it using tmux a. Then i went to window 0 using ctrl-B and 0 (after releasing ctrl-B) and found the flag. 
+
+```
+Main terminal:
+hacker@terminal-multiplexing~switching-windows-tmux:~$ tmux ls
+challenge_session: 2 windows (created Fri Oct 10 17:46:41 2025)
+hacker@terminal-multiplexing~switching-windows-tmux:~$ tmux a
+[detached (from session challenge_session)]
+
+Window 1:
+ cat <<MSG
+Welcome to the tmux window switching challenge!
+You are currently in window 1.
+The flag is hidden in window 0.
+Use Ctrl-B 0 to switch to window 0!
+MSG
+hacker@terminal-multiplexing~switching-windows-tmux:~$  cat <<MSG
+> Welcome to the tmux window switching challenge!
+> You are currently in window 1.
+> The flag is hidden in window 0.
+> Use Ctrl-B 0 to switch to window 0!
+> MSG
+Welcome to the tmux window switching challenge!
+You are currently in window 1.
+The flag is hidden in window 0.
+Use Ctrl-B 0 to switch to window 0!
+
+window 0:
+hacker@terminal-multiplexing~switching-windows-tmux:~$  cat <<MSG
+> Excellent work! You found window 0!
+> Here is your flag: pwn.college{EZ8P2JLM0gJsLJmaD_03Ckr_8LJ.0FM5IDOxwiN3kjNzEzW}
+> MSG
+Excellent work! You found window 0!
+Here is your flag: pwn.college{EZ8P2JLM0gJsLJmaD_03Ckr_8LJ.0FM5IDOxwiN3kjNzEzW}
+```
+
+## What I learned
+I learned how we can navigate windows in tmux: 
+
+Ctrl-B c - Create a new window
+
+Ctrl-B n - Next window
+
+Ctrl-B p - Previous window
+
+Ctrl-B 0 through Ctrl-B 9 - Jump to window 0-9
+
+Ctrl-B w - See a nice window picker
+
+Tmux also shows your windows at the bottom in a status bar.  
+
+## References
+pwn.college instructions. 
