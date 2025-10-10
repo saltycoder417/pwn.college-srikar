@@ -159,27 +159,60 @@ I learned about shebangs. They start with #!. There are a bunch of different typ
 pwn.college instructions.
 
 # 7. Scripting with arguments: 
-### In this challenge, they told us to create a script that will invoke the /challenge/solve, make it executable, and then run it without invoking bash to get the flag. 
+### In this challenge, they told us to make a script such that it takes 2 arguments and outputs them in reverse order. After the script is ready, they told us to run /challenge/run to get the flag. 
 
 ## My solve
-****
+**pwn.college{Ijonx-D4xKlBzQMvgzwbGHVm3gP.0VNzMDOxwiN3kjNzEzW}**
 
-I used nano command to create a shell script named x.sh, and inside nano i typed /challenge/solve. I then changed the permissions of the file to allow the user (that is me) to execute the file using chmod u+x. Then i executed the x.sh file to get the flag. 
+I used nano command to create a shell script named solve.sh, and inside nano i typed echo "$2 $1". After that i invoked /challenge/run to get the flag. 
 
 ```
-hacker@chaining~redirecting-script-output:~$ nano x.sh
-hacker@chaining~executable-shell-scripts:~$ ./x.sh
-bash: ./x.sh: Permission denied
-hacker@chaining~executable-shell-scripts:~$ ls -l ./x.sh
--rw-r--r-- 1 hacker hacker 16 Oct 10 19:45 ./x.sh
-hacker@chaining~executable-shell-scripts:~$ chmod u+x ./x.sh
-hacker@chaining~executable-shell-scripts:~$ ./x.sh
-Congratulations on your shell script execution! Your flag:
-pwn.college{AaZm8-s_G5BK3WWAVAIW7a6wLqC.QX0cjM1wiN3kjNzEzW}
+hacker@chaining~redirecting-script-output:~$ nano solve.sh
+hacker@chaining~scripting-with-arguments:~$ bash solve.sh hi hello
+hello hi
+hacker@chaining~scripting-with-arguments:~$ /challenge/run
+Correct! Your script properly reversed the arguments.
+Here's your flag:
+pwn.college{Ijonx-D4xKlBzQMvgzwbGHVm3gP.0VNzMDOxwiN3kjNzEzW}
 ```
 
 ## What I learnt
-I learned that we can directly execute the shell script files, if we have executable (x) permissions for that.   
+I learned that scripts can accept arguments. For example: bash script.sh argument1 argument2, $1 contains argument1 and $2 contains argument2, and so on.   
+
+## References
+pwn.college instructions.
+
+# 8. Scripting with conditionals: 
+### In this challenge, they told us to make a script such that it takes 1 argument, and if the argument is pwn, then it outputs college, and for any other input it outputs nothing. Once the script is done they asked us to run /challenge/run to get the flag.
+
+## My solve
+**pwn.college{AOnb-RxhrmRfTrzsBbyRJR8coQn.0lNzMDOxwiN3kjNzEzW}**
+
+I used nano command to create a shell script named solve.sh, and inside nano i typed the script for outputting college if the argument is pwn. Then i ran /challenge/run to get the flag.  
+
+```
+hacker@chaining~redirecting-script-output:~$ nano solve.sh
+hacker@chaining~scripting-with-conditionals:~$ bash solve.ch pwn
+bash: solve.ch: No such file or directory
+hacker@chaining~scripting-with-conditionals:~$ bash ./solve.sh pwn
+college
+hacker@chaining~scripting-with-conditionals:~$ bash ./solve.sh ssh
+hacker@chaining~scripting-with-conditionals:~$ /challenge/run
+Correct! Your script properly handles all the conditions.
+Here's your flag:
+pwn.college{AOnb-RxhrmRfTrzsBbyRJR8coQn.0lNzMDOxwiN3kjNzEzW}
+
+nano:
+#!/bin/bash
+
+if [ "$1" == "pwn" ]
+then 
+    echo "college" 
+fi
+```
+
+## What I learnt
+I learned that we can also use conditional statements with arguments in the script. We should be careful with the syntax here as its a little weird. 
 
 ## References
 pwn.college instructions.
