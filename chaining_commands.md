@@ -158,7 +158,7 @@ I learned about shebangs. They start with #!. There are a bunch of different typ
 ## References
 pwn.college instructions.
 
-# 7. Scripting with arguments: 
+# 8. Scripting with arguments: 
 ### In this challenge, they told us to make a script such that it takes 2 arguments and outputs them in reverse order. After the script is ready, they told us to run /challenge/run to get the flag. 
 
 ## My solve
@@ -182,7 +182,7 @@ I learned that scripts can accept arguments. For example: bash script.sh argumen
 ## References
 pwn.college instructions.
 
-# 8. Scripting with conditionals: 
+# 9. Scripting with conditionals: 
 ### In this challenge, they told us to make a script such that it takes 1 argument, and if the argument is pwn, then it outputs college, and for any other input it outputs nothing. Once the script is done they asked us to run /challenge/run to get the flag.
 
 ## My solve
@@ -191,6 +191,7 @@ pwn.college instructions.
 I used nano command to create a shell script named solve.sh, and inside nano i typed the script for outputting college if the argument is pwn. Then i ran /challenge/run to get the flag.  
 
 ```
+Main terminal:
 hacker@chaining~redirecting-script-output:~$ nano solve.sh
 hacker@chaining~scripting-with-conditionals:~$ bash solve.ch pwn
 bash: solve.ch: No such file or directory
@@ -213,6 +214,110 @@ fi
 
 ## What I learnt
 I learned that we can also use conditional statements with arguments in the script. We should be careful with the syntax here as its a little weird. 
+
+## References
+pwn.college instructions.
+
+# 10. Scripting with default cases: 
+### In this challenge, they told us to make a script such that it takes 1 argument, and if the argument is pwn, then it outputs college, and for any other input it outputs nope. Once the script is done they asked us to run /challenge/run to get the flag.
+
+## My solve
+**pwn.college{o7CBUvQ851pzbEIIOd8oKW9vOld.01NzMDOxwiN3kjNzEzW}**
+
+I used nano command to create a shell script named solve.sh, and inside nano i typed the script for outputting college if the argument is pwn, and nope for any other argument. Then i ran /challenge/run to get the flag.  
+
+```
+Main terminal:
+hacker@chaining~scripting-with-default-cases:~$ /challenge/run
+Correct! Your script properly handles the if/else conditions.
+Here's your flag:
+pwn.college{o7CBUvQ851pzbEIIOd8oKW9vOld.01NzMDOxwiN3kjNzEzW}
+
+nano:
+#!/bin/bash
+
+if [ "$1" == "pwn" ]
+then 
+    echo "college"
+else
+    echo "nope" 
+fi
+```
+
+## What I learnt
+I learned that we can also use else along with if in bash script. else does not need then unlike if. 
+
+## References
+pwn.college instructions.
+
+
+# 11. Scripting with multiple conditions: 
+### In this challenge, they told us to make a script such that it takes 1 argument, if the argument is pwn, then it outputs college, if the argument is "hack", then it outputs "the planet", if the argument is learn, then it outputs linux and for any other input it outputs unknown. Once the script is done they asked us to run /challenge/run to get the flag.
+
+## My solve
+**pwn.college{sUod2N65wkqN8xgxlSTtYcqOJbW.0FOzMDOxwiN3kjNzEzW}**
+
+I used nano command to create a shell script named solve.sh, and inside nano i typed the script for the given conditions. Then i ran /challenge/run to get the flag.  
+
+```
+Main terminal:
+hacker@chaining~scripting-with-multiple-conditions:~$ /challenge/run
+Correct! Your script properly handles all the conditions with elif.
+Here's your flag:
+pwn.college{sUod2N65wkqN8xgxlSTtYcqOJbW.0FOzMDOxwiN3kjNzEzW}
+
+nano:
+#!/bin/bash
+
+if [ "$1" == "pwn" ]
+then 
+    echo "college"
+elif [ "$1" == "hack" ]
+then 
+    echo "the planet"
+elif [ "$1" == "learn" ] 
+then 
+    echo "linux"
+else 
+    echo "unknown"
+fi 
+```
+
+## What I learnt
+I learned that we can also use elif (else if) in bash script. Syntax is same as if. We need to keep then over here also.
+
+## References
+pwn.college instructions.
+
+# 12. Reading shell scripts: 
+### In this challenge, they told us that /challenge/run is a shell script, that requires you to put in a secret password, but that password is hardcoded into the script iself. They asked us to read the script, find the password and then get the flag.
+
+## My solve
+**pwn.college{EXqT1ZyCwBzCt0YySBdQSv3l0Jz.0lMwgDOxwiN3kjNzEzW}**
+
+I first read the script of /challenge/run using cat command. Then i found the password, which was hack the PLANET. I ran /challenge/run, entered the password, and got the flag.
+
+```
+hacker@chaining~reading-shell-scripts:~$ cat /challenge/run
+#!/opt/pwn.college/bash
+
+read GUESS
+if [ "$GUESS" == "hack the PLANET" ]
+then
+        echo "CORRECT! Your flag:"
+        cat /flag
+else
+        echo "Read the /challenge/run file to figure out the correct password!"
+fi
+hacker@chaining~reading-shell-scripts:~$ /challenge/run 
+hack the PLANET
+CORRECT! Your flag:
+pwn.college{EXqT1ZyCwBzCt0YySBdQSv3l0Jz.0lMwgDOxwiN3kjNzEzW}
+ 
+```
+
+## What I learnt
+I learned how we can read scripts, like by using cat command. 
 
 ## References
 pwn.college instructions.
